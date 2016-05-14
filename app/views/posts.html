@@ -1,0 +1,32 @@
+<div class="row">
+
+  <table class="table table-striped">
+    <tr>
+      <th width="10%">Fecha</th>
+      <th width="20%">Título</th>
+      <th width="40%">Contenido</th>
+      <th width="20%">Extracto</th>
+      <th width="10%" colspan="2">Acciones</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="text" ng-model="vm.title" id="title" placeholder="Título" class="form-control" /></td>
+      <td><input type="text" ng-model="vm.content" id="content" placeholder="Contenido" class="form-control" /></td>
+      <td><input type="text" ng-model="vm.excerpt" id="excerpt" placeholder="Extracto" class="form-control" /></td>
+      <td colspan="2"><a href="" ng-click="vm.createPost(vm)" type="submit" class="btn btn-primary">Crear post</a></td>
+    </tr>
+    <tr ng-repeat="post in vm.posts">
+      <td>{{post.date}}</td>
+      <td ng-bind-html="post.title.rendered"></td>
+      <td ng-bind-html="post.content.rendered"></td>
+      <td ng-bind-html="post.excerpt.rendered"></td>
+      <td>
+        <a href="#/post/{{post.id}}" class="btn btn-warning"><i class="glyphicon glyphicon-eye-open"></i></a>
+      </td>
+      <td>
+        <a ng-click="vm.deletePost(post.id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+      </td>
+    </tr>
+  </table>
+
+</div>

@@ -1,0 +1,58 @@
+<h2>Contenido del POST número {{vm.post.id}}</h2>
+<h3>Título: {{vm.post.title.rendered}}</h3>
+<h4>Contenido:</h4>
+<div ng-bind-html="vm.post.content.rendered"></div>
+<h4>Extracto:</h4>
+<div ng-bind-html="vm.post.excerpt.rendered"></div>
+<a href="{{vm.post.link}}" target="_blank">{{vm.post.link}}</a><br>
+<button class="btn btn-primary" ng-click="vm.openModal()">Editar post</button>
+
+<div>
+  <script type="text/ng-template" id="modal-post.html">
+    <form ng-submit="vmm.editPost(vmm.post, vmm.post.id)" method="post" role="form">
+      <div class="modal-header">
+        <h3 class="modal-title">{{ vmm.messageText }}</h3>
+      </div>
+      <div class="modal-body">
+        <h4>Título: {{vmm.post.title.rendered}}</h4>
+          <div class="form-group">
+            <label for="title">Título:</label>
+            <input type="text" ng-model="vmm.post.title.rendered" id="title" class="form-control" />
+            <label for="content">Contenido:</label>
+            <textarea rows="4" ng-model="vmm.post.content.rendered" ng-bind-html="vmm.post.content.rendered" id="content" class="form-control"></textarea>
+            <label for="excerpt">Resumen:</label>
+            <input type="text" ng-model="vmm.post.excerpt.rendered" id="excerpt" class="form-control" />
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <a href="" class="btn btn-danger" ng-click="vmm.cancel()">Cancel</a>
+      </div>
+    </form>
+  </script>
+</div>
+
+
+<hr><hr>
+
+<h2>Revisiones del POST número {{vm.post.id}}</h2>
+<table class="table table-striped">
+  <tr>
+    <th width="10%">Fecha</th>
+    <th width="20%">Título</th>
+    <th width="45%">Contenido</th>
+    <th width="10%">Extracto</th>
+    <th width="5%">Eliminar</th>
+  </tr>
+  <tr ng-repeat="post in vm.posts">
+    <td>{{post.date}}</td>
+    <td>
+      {{post.title}}
+    </td>
+    <td ng-bind-html="post.content"></td>
+    <td ng-bind-html="post.excerpt"></td>
+    <td>
+      <a ng-click="vm.deletePostRevissions(post.id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+    </td>
+  </tr>
+</table>

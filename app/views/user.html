@@ -1,0 +1,40 @@
+<div ng-show="vm.login === '3'">
+  <form ng-submit="vm.editUser(vm.user, vm.user.id)" method="post" role="form">
+    <h2>Datos del usuario: </h2>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input type="text" value="{{vm.user.id}}" name="id" class="form-control" disabled>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" value="{{vm.user.email}}" name="email" class="form-control" disabled>
+      </div>
+      <div class="form-group">
+        <label for="last_name">Last name</label>
+        <input type="text" ng-model="vm.user.last_name" ng-disabled="!vm.enable" value="{{vm.user.last_name}}" name="last_name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="first_name">First name</label>
+        <input type="text" ng-model="vm.user.first_name" ng-disabled="!vm.enable" value="{{vm.user.first_name}}" name="first_name" class="form-control">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" ng-model="vm.user.name" ng-disabled="!vm.enable" value="{{vm.user.name}}" name="nombre" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="description">Biografía</label>
+        <input type="text" ng-model="vm.user.description" ng-disabled="!vm.enable" value="{{vm.user.description}}" name="description" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="url">Url del autor</label>
+        <input type="url" ng-model="vm.user.url" ng-disabled="!vm.enable" value="{{vm.user.url}}" name="url" class="form-control">
+      </div>
+      <button ng-show="vm.enable == true" type="submit" class="btn btn-primary">Guardar cambios</button>
+      <a ng-show="vm.enable == false" ng-click="vm.enable = !vm.enable" class="btn btn-default">Habilitar edición</a>
+      <a ng-show="vm.enable == true" ng-click="vm.cancelEditUser()" class="btn btn-danger">Cancelar</a>
+    </div>
+  </form>
+</div>

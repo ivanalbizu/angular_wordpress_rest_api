@@ -1,0 +1,35 @@
+<h2>Contenido del ESTUDIO número {{vm.study.id}}</h2>
+<h3>Título: {{vm.study.title.rendered}}</h3>
+<h4>Año: {{vm.study.year[0]}}</h4>
+<h4>Colegio: {{vm.study.school[0]}}</h4>
+<h4>Contenido:</h4>
+<div ng-bind-html="vm.study.content.rendered"></div>
+<a href="{{vm.study.link}}" target="_blank">{{vm.study.link}}</a><br>
+<button class="btn btn-primary" ng-click="vm.openModal()">Editar estudio</button>
+
+<div>
+  <script type="text/ng-template" id="modal-study.html">
+    <form ng-submit="vmm.editStudy(vmm.study, vmm.study.id)" method="post" role="form">
+      <div class="modal-header">
+        <h3 class="modal-title">{{vmm.messageText}}</h3>
+      </div>
+      <div class="modal-body">
+        <h4>Título: {{vmm.study.title.rendered}}</h4>
+          <div class="form-group">
+            <label for="title">Título:</label>
+            <input type="text" ng-model="vmm.study.title.rendered" id="title" class="form-control" />
+            <label for="year">Año:</label>
+            <input type="text" ng-model="vmm.study.year" id="year" name="year" class="form-control" />
+            <label for="school">Colegio:</label>
+            <input type="text" ng-model="vmm.study.school" id="school" class="form-control" />
+            <label for="content">Contenido:</label>
+            <textarea rows="4" ng-model="vmm.study.content.rendered" ng-bind-html="vmm.study.content.rendered" id="content" class="form-control"></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <a href="" class="btn btn-danger" ng-click="vmm.cancel()">Cancel</a>
+      </div>
+    </form>
+  </script>
+</div>
